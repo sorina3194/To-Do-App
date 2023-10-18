@@ -1,0 +1,23 @@
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(desk.png);
+}
+
+.container {
+  margin-top: 100px;
+  width: 60%;
+  height: 700px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+  background-color: rgb(255, 252, 247);
+}
+
+#title{
+  padding-left: 20px;
+  color: #5f9ea0;
+  font-size: 50px;
+  border-style: dotted;
+  background-color: #d3feff;
+  margin-top: 0px;
+}
