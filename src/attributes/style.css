@@ -5,7 +5,12 @@ body{
   background-image: url(desk.png);
 }
 
-.container {
+h1{
+  margin: 0;
+}
+.main-container {
+  display: flex;
+  flex-direction: column;
   margin-top: 100px;
   width: 60%;
   height: 700px;
@@ -20,4 +25,19 @@ body{
   border-style: dotted;
   background-color: #d3feff;
   margin-top: 0px;
+}
+
+#to-dos{
+flex: 2;
+}
+
+#lists {
+  flex: 1;
+  border-style: dotted;
+  background-color: rgb(236, 236, 236);
+}
+
+.second-container {
+  flex: 1;
+  display: flex;
 }
