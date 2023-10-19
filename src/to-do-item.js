@@ -6,6 +6,25 @@ export class ToDoItem {
     this.priority = priority;
     this.isDone = false;
   }
+  createHTML() {
+    const toDoItem = document.createElement("div");
+    toDoItem.setAttribute('id', 'toDoItem');
+
+    const titleElement = document.createElement("h2");
+    titleElement.innerHTML = this.title;
+
+    const descriptionElement = document.createElement("p");
+    descriptionElement.innerHTML = this.description;
+
+    // You can add more elements for due date, priority, etc.
+
+    toDoItem.appendChild(titleElement);
+    toDoItem.appendChild(descriptionElement);
+
+    // Append the item container to the "lists" container
+    const toDoContainer = document.getElementById("to-dos");
+    toDoContainer.appendChild(toDoItem);
+  }
 
   markAsDone() {
     this.isDone = true;

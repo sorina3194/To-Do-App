@@ -18,26 +18,48 @@ h1{
   background-color: rgb(255, 252, 247);
 }
 
+.second-container {
+  flex: 1;
+  display: flex;
+}
+#projects {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px;
+  background-color: rgb(236, 236, 236);
+}
+
+#items{
+  flex: 2;
+}
+
 #title{
   padding-left: 20px;
   color: #5f9ea0;
   font-size: 50px;
-  border-style: dotted;
+  border-style: solid;
   background-color: #d3feff;
   margin-top: 0px;
 }
 
-#to-dos{
-flex: 2;
+#toDoList{
+    width: 100%;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+    color: #5f9ea0;
 }
 
-#lists {
-  flex: 1;
-  border-style: dotted;
-  background-color: rgb(236, 236, 236);
-}
 
-.second-container {
-  flex: 1;
+
+#toDoItem {
   display: flex;
+  margin-left: 20px;
+  justify-content: space-around;
+  align-items: center;
 }

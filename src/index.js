@@ -1,30 +1,26 @@
 import { ToDoList } from "./to-do-list";
 import './attributes/style.css'
 
-const myToDoList = new ToDoList("My Daily Tasks").createHTML()
+const myToDoList = new ToDoList('HOME')
+const myToDoList2 = new ToDoList('TODAY')
 
+const item = myToDoList.createToDoItem("Sleep","i want to sleep well tonight", "17.10.2023", "HIGH")
+const item2 = myToDoList.createToDoItem("Code", "create to do list", 19,10,2023, "high")
 
+myToDoList.createHTML()
+myToDoList2.createHTML()
 
+let itemsCreated = false
 
-// const item = myToDoList.createToDoItem("Sleep","i want to sleep well tonight", "17.10.2023", "HIGH")
-// item.createHTML()
+const myToDoListButton = document.getElementById('toDoList')
 
-// createHTML() {
-//   const itemContainer = document.createElement("div");
-//   itemContainer.setAttribute('id', 'todo-item');
-
-//   const titleElement = document.createElement("h2");
-//   titleElement.innerHTML = this.title;
-
-//   const descriptionElement = document.createElement("p");
-//   descriptionElement.innerHTML = this.description;
-
-//   // You can add more elements for due date, priority, etc.
-
-//   itemContainer.appendChild(titleElement);
-//   itemContainer.appendChild(descriptionElement);
-
-//   // Append the item container to the "lists" container
-//   const toDoContainer = document.getElementById("to-dos");
-//   toDoContainer.appendChild(itemContainer);
-// }
+myToDoListButton.addEventListener('click', () => {
+  const itemsFolder= document.getElementById('items')
+// if to-dos are not empty, do nothing
+  if (!itemsCreated) {
+    myToDoList.items.forEach(item => {
+    itemsCreated = true
+    item.createHTML()
+  })
+  }
+})

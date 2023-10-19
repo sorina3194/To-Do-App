@@ -11,19 +11,14 @@ export class ToDoList {
     this.items.push(newItem);
     return newItem
   }
-  
+
   createHTML() {
-    const toDoContainer = document.createElement("div");
-    toDoContainer.setAttribute('id', 'todo-folder');
-
-    const titleElement = document.createElement("h2");
-    titleElement.innerHTML = this.title;
-
-    toDoContainer.appendChild(titleElement);
-
+    const toDoList = document.createElement("button");
+    toDoList.setAttribute('id', 'toDoList');
+    toDoList.innerHTML = this.title;
     // Append the item container to the "lists" container
     const listsContainer = document.getElementById("lists");
-    listsContainer.appendChild(toDoContainer);
+    listsContainer.appendChild(toDoList);
   }
 
   markItemAdDone(index) {
