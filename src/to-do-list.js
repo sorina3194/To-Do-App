@@ -14,11 +14,19 @@ export class ToDoList {
 
   createHTML() {
     const toDoList = document.createElement("button");
-    toDoList.setAttribute('id', 'toDoList');
+    toDoList.setAttribute('class', 'toDoList');
     toDoList.innerHTML = this.title;
-    // Append the item container to the "lists" container
+
     const listsContainer = document.getElementById("lists");
     listsContainer.appendChild(toDoList);
+
+    toDoList.addEventListener('click', () => {
+      const itemsFolder= document.getElementById('to-dos')
+      itemsFolder.innerHTML = ""
+      this.items.forEach(item => {
+        item.createHTML()
+      })
+    })
   }
 
   markItemAdDone(index) {

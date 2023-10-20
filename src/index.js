@@ -5,22 +5,7 @@ const myToDoList = new ToDoList('HOME')
 const myToDoList2 = new ToDoList('TODAY')
 
 const item = myToDoList.createToDoItem("Sleep","i want to sleep well tonight", "17.10.2023", "HIGH")
-const item2 = myToDoList.createToDoItem("Code", "create to do list", 19,10,2023, "high")
+const item2 = myToDoList2.createToDoItem("Code", "create to do list", 19,10,2023, "high")
 
 myToDoList.createHTML()
 myToDoList2.createHTML()
-
-let itemsCreated = false
-
-const myToDoListButton = document.getElementById('toDoList')
-
-myToDoListButton.addEventListener('click', () => {
-  const itemsFolder= document.getElementById('items')
-// if to-dos are not empty, do nothing
-  if (!itemsCreated) {
-    myToDoList.items.forEach(item => {
-    itemsCreated = true
-    item.createHTML()
-  })
-  }
-})
