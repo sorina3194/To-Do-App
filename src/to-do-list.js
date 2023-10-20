@@ -23,8 +23,8 @@ export class ToDoList {
     toDoList.addEventListener('click', () => {
       const itemsFolder= document.getElementById('to-dos')
       itemsFolder.innerHTML = ""
-      this.items.forEach(item => {
-        item.createHTML()
+      this.items.forEach((item, index) => {
+        item.createHTML(() => this.deleteToDoItem(index))
       })
     })
   }

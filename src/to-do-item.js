@@ -3,10 +3,10 @@ export class ToDoItem {
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
-    this.priority = priority;
     this.isDone = false;
   }
-  createHTML() {
+
+  createHTML(onDelete) {
     const toDoItem = document.createElement("div");
     toDoItem.setAttribute('id', 'toDoItem');
 
@@ -16,10 +16,24 @@ export class ToDoItem {
     const descriptionElement = document.createElement("p");
     descriptionElement.innerHTML = this.description;
 
-    // You can add more elements for due date, priority, etc.
+    const dueDate = document.createElement("p");
+    dueDate.innerHTML = `due the: ${this.dueDate}`;
+
+    const priority = document.createElement("p");
+    priority.innerHTML = this.priority;
+
+    const deleteButton = document.createElement('i')
+    deleteButton.setAttribute('class', "fa-solid fa-trash fa-sm")
+    toDoItem.appendChild(deleteButton)
+    deleteButton.addEventListener('click', () => {
+      toDoItem.remove()
+      onDelete()
+    })
 
     toDoItem.appendChild(titleElement);
     toDoItem.appendChild(descriptionElement);
+    toDoItem.appendChild(dueDate);
+
 
     // Append the item container to the "lists" container
     const toDoContainer = document.getElementById("to-dos");
