@@ -21,11 +21,48 @@ export class ToDoList {
     listsContainer.appendChild(toDoList);
 
     toDoList.addEventListener('click', () => {
+
       const itemsFolder= document.getElementById('to-dos')
       itemsFolder.innerHTML = ""
-      this.items.forEach((item, index) => {
-        item.createHTML(() => this.deleteToDoItem(index))
+
+      const buttonsContainer= document.getElementById('buttons-container')
+      buttonsContainer.innerHTML = ""
+
+      const addItemButton = document.createElement('button')
+      addItemButton.setAttribute('id', 'add-item-button')
+      addItemButton.innerHTML = "Add To Do"
+      buttonsContainer.appendChild(addItemButton)
+
+      addItemButton.addEventListener('click', () => {
+        const title = prompt('Title:');
+        const description = prompt('Description');
+        const dueDate = prompt('Due Date:');
+        const priority = prompt('Priority:');
+        const item = this.createToDoItem(title,description,dueDate,priority)
+        const itemsFolder= document.getElementById('to-dos')
+        itemsFolder.innerHTML = ""
+        this.items.forEach((item, index) => {
+          const onDelete = () => this.deleteToDoItem(index)
+          item.createHTML(onDelete)
+        })
       })
+
+      const deleteList = document.createElement('button')
+      deleteList.setAttribute('id', 'delete-list')
+      deleteList.innerHTML = "Delete List"
+      buttonsContainer.appendChild(deleteList)
+
+      deleteList.addEventListener('click', () => {
+        listsContainer.removeChild(toDoList);
+        itemsFolder.innerHTML = "";
+        this.deleteToDoList();
+      });
+
+      this.items.forEach((item, index) => {
+        const onDelete = () => this.deleteToDoItem(index)
+        item.createHTML(onDelete)
+      })
+
     })
   }
 
@@ -39,5 +76,11 @@ export class ToDoList {
     if (index >= 0 && index < this.items.length) {
       this.items.splice(index, 1);
     }
+  }
+
+  deleteToDoList() {
+    this.items = [];
+    const buttonsContainer= document.getElementById('buttons-container')
+    buttonsContainer.innerHTML = ""
   }
 }

@@ -33,6 +33,12 @@ export class ToDoItem {
     deleteButton.setAttribute('class', "fa-solid fa-trash fa-sm")
     toDoItem.appendChild(deleteButton)
 
+
+    deleteButton.addEventListener('click', () => {
+      toDoItem.remove()
+      onDelete()
+    })
+
     const editButton = document.createElement('i')
     editButton.setAttribute('class', 'fa-solid fa-pen-to-square')
     toDoItem.appendChild(editButton)
@@ -55,13 +61,6 @@ export class ToDoItem {
 
     })
 
-    deleteButton.addEventListener('click', () => {
-      toDoItem.remove()
-      onDelete()
-    })
-
-
-    // Append the item container to the "lists" container
     const toDoContainer = document.getElementById("to-dos");
     toDoContainer.appendChild(toDoItem);
 
@@ -71,19 +70,4 @@ export class ToDoItem {
     this.isDone = true;
   }
 
-  updateTitle(newTitle) {
-    this.title = newTitle;
-  }
-
-  updateDescription(newDescription) {
-    this.description = newDescription;
-  }
-
-  updateDueDate(newDueDate) {
-    this.dueDate = newDueDate;
-  }
-
-  updatePriority(newPriority) {
-    this.priority = newPriority
-  }
 }

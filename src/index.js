@@ -1,4 +1,5 @@
 import { ToDoList } from "./to-do-list";
+// import { FolderList} from "./folder-list";
 import './attributes/style.css'
 
 const myToDoList = new ToDoList('HOME')
@@ -17,14 +18,4 @@ addListButton.addEventListener('click', () => {
   const title = prompt('Title:')
   const list = new ToDoList(title)
   list.createHTML()
-})
-
-const addItemButton = document.getElementById('add-item-button')
-
-addItemButton.addEventListener('click', () => {
-  const title = prompt('Title:');
-  const description = prompt('Description');
-  const dueDate = prompt('Due Date:');
-  const priority = prompt('Priority:');
-  const item = myToDoList2.createToDoItem(title,description,dueDate,priority)
 })

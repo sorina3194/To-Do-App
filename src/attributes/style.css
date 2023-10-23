@@ -13,7 +13,6 @@ h1{
   flex-direction: column;
   margin-top: 100px;
   width: 60%;
-  height: 700px;
   box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
   background-color: rgb(255, 252, 247);
 }
@@ -21,6 +20,8 @@ h1{
 .second-container {
   flex: 1;
   display: flex;
+  min-height: 600px;
+  max-height: 600px;
 }
 
 #projects {
@@ -34,9 +35,8 @@ h1{
 
 #items{
   flex: 2;
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
+  overflow-y: scroll;
+  overflow-x: hidden;
   padding: 10px;
 }
 
@@ -60,13 +60,30 @@ h1{
     color: #5f9ea0;
 }
 
-#add-list-button,#add-item-button {
+#add-list-button {
   width: 100%;
   padding: 10px 20px;
   margin: 5px;
   border: none;
   border-radius: 20px;
   background-color: white;
+  cursor: pointer;
+  color: #5f9ea0;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+#buttons-container {
+  display: flex;
+}
+
+#add-item-button, #delete-list {
+  width: 100%;
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 20px;
+  background-color: rgb(236, 236, 236);
   cursor: pointer;
   color: #5f9ea0;
   font-size: 15px;
