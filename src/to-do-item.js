@@ -3,41 +3,68 @@ export class ToDoItem {
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
+    this.priority = priority;
     this.isDone = false;
   }
 
   createHTML(onDelete) {
     const toDoItem = document.createElement("div");
+    toDoItem.setAttribute('class', 'card')
     toDoItem.setAttribute('id', 'toDoItem');
 
     const titleElement = document.createElement("h2");
     titleElement.innerHTML = this.title;
+    toDoItem.appendChild(titleElement);
 
     const descriptionElement = document.createElement("p");
-    descriptionElement.innerHTML = this.description;
+    descriptionElement.innerHTML = `DESCRIPTION: ${this.description}`;
 
     const dueDate = document.createElement("p");
-    dueDate.innerHTML = `due the: ${this.dueDate}`;
+    dueDate.innerHTML = `DUE DATE: ${this.dueDate}`;
 
     const priority = document.createElement("p");
-    priority.innerHTML = this.priority;
+    priority.innerHTML = `PRIORITY : ${this.priority}`;
+
+    toDoItem.appendChild(descriptionElement);
+    toDoItem.appendChild(dueDate);
+    toDoItem.appendChild(priority);
 
     const deleteButton = document.createElement('i')
     deleteButton.setAttribute('class', "fa-solid fa-trash fa-sm")
     toDoItem.appendChild(deleteButton)
+
+    const editButton = document.createElement('i')
+    editButton.setAttribute('class', 'fa-solid fa-pen-to-square')
+    toDoItem.appendChild(editButton)
+
+    const saveButton = document.createElement('i')
+    saveButton.setAttribute('class','fa-solid fa-square-check')
+    saveButton.style.display = "none"
+    toDoItem.appendChild(saveButton)
+
+    editButton.addEventListener('click', () => {
+      toDoItem.contentEditable = true;
+      saveButton.style.display = "block"
+      saveButton.addEventListener('click', () => {
+        this.title= titleElement.innerHTML
+        this.description = descriptionElement.innerHTML.replace('DESCRIPTION: ', "")
+        this.dueDate = dueDate.innerHTML.replace('DUE DATE: ', "")
+        this.priority = priority.innerHTML.replace('PRIORITY: ')
+        saveButton.style.display="none"
+      })
+
+    })
+
     deleteButton.addEventListener('click', () => {
       toDoItem.remove()
       onDelete()
     })
 
-    toDoItem.appendChild(titleElement);
-    toDoItem.appendChild(descriptionElement);
-    toDoItem.appendChild(dueDate);
-
 
     // Append the item container to the "lists" container
     const toDoContainer = document.getElementById("to-dos");
     toDoContainer.appendChild(toDoItem);
+
   }
 
   markAsDone() {
