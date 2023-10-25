@@ -19,3 +19,7 @@ addListButton.addEventListener('click', () => {
   const list = new ToDoList(title)
   list.createHTML()
 })
+
+window.addEventListener('load', () => {
+  myToDoList.displayItems()
+});

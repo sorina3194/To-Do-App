@@ -20,49 +20,49 @@ export class ToDoList {
     const listsContainer = document.getElementById("lists");
     listsContainer.appendChild(toDoList);
 
-    toDoList.addEventListener('click', () => {
+    toDoList.addEventListener('click', () => this.displayItems())
+  }
 
+  displayItems() {
+    const itemsFolder= document.getElementById('to-dos')
+    itemsFolder.innerHTML = ""
+
+    const buttonsContainer= document.getElementById('buttons-container')
+    buttonsContainer.innerHTML = ""
+
+    const addItemButton = document.createElement('button')
+    addItemButton.setAttribute('id', 'add-item-button')
+    addItemButton.innerHTML = "Add To Do"
+    buttonsContainer.appendChild(addItemButton)
+
+    addItemButton.addEventListener('click', () => {
+      const title = prompt('Title:');
+      const description = prompt('Description');
+      const dueDate = prompt('Due Date:');
+      const priority = prompt('Priority:');
+      const item = this.createToDoItem(title,description,dueDate,priority)
       const itemsFolder= document.getElementById('to-dos')
       itemsFolder.innerHTML = ""
-
-      const buttonsContainer= document.getElementById('buttons-container')
-      buttonsContainer.innerHTML = ""
-
-      const addItemButton = document.createElement('button')
-      addItemButton.setAttribute('id', 'add-item-button')
-      addItemButton.innerHTML = "Add To Do"
-      buttonsContainer.appendChild(addItemButton)
-
-      addItemButton.addEventListener('click', () => {
-        const title = prompt('Title:');
-        const description = prompt('Description');
-        const dueDate = prompt('Due Date:');
-        const priority = prompt('Priority:');
-        const item = this.createToDoItem(title,description,dueDate,priority)
-        const itemsFolder= document.getElementById('to-dos')
-        itemsFolder.innerHTML = ""
-        this.items.forEach((item, index) => {
-          const onDelete = () => this.deleteToDoItem(index)
-          item.createHTML(onDelete)
-        })
-      })
-
-      const deleteList = document.createElement('button')
-      deleteList.setAttribute('id', 'delete-list')
-      deleteList.innerHTML = "Delete List"
-      buttonsContainer.appendChild(deleteList)
-
-      deleteList.addEventListener('click', () => {
-        listsContainer.removeChild(toDoList);
-        itemsFolder.innerHTML = "";
-        this.deleteToDoList();
-      });
-
       this.items.forEach((item, index) => {
         const onDelete = () => this.deleteToDoItem(index)
         item.createHTML(onDelete)
       })
+    })
 
+    const deleteList = document.createElement('button')
+    deleteList.setAttribute('id', 'delete-list')
+    deleteList.innerHTML = "Delete List"
+    buttonsContainer.appendChild(deleteList)
+
+    deleteList.addEventListener('click', () => {
+      listsContainer.removeChild(toDoList);
+      itemsFolder.innerHTML = "";
+      this.deleteToDoList();
+    });
+
+    this.items.forEach((item, index) => {
+      const onDelete = () => this.deleteToDoItem(index)
+      item.createHTML(onDelete)
     })
   }
 
