@@ -69,5 +69,4 @@ export class ToDoItem {
   markAsDone() {
     this.isDone = true;
   }
-
 }

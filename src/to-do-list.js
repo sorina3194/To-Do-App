@@ -35,19 +35,7 @@ export class ToDoList {
     addItemButton.innerHTML = "Add To Do"
     buttonsContainer.appendChild(addItemButton)
 
-    addItemButton.addEventListener('click', () => {
-      const title = prompt('Title:');
-      const description = prompt('Description');
-      const dueDate = prompt('Due Date:');
-      const priority = prompt('Priority:');
-      const item = this.createToDoItem(title,description,dueDate,priority)
-      const itemsFolder= document.getElementById('to-dos')
-      itemsFolder.innerHTML = ""
-      this.items.forEach((item, index) => {
-        const onDelete = () => this.deleteToDoItem(index)
-        item.createHTML(onDelete)
-      })
-    })
+    addItemButton.addEventListener('click', () => this.addItem())
 
     const deleteList = document.createElement('button')
     deleteList.setAttribute('id', 'delete-list')
@@ -64,6 +52,25 @@ export class ToDoList {
       const onDelete = () => this.deleteToDoItem(index)
       item.createHTML(onDelete)
     })
+  }
+
+  addItem() {
+      const title = prompt('Title:');
+      const description = prompt('Description');
+      const dueDate = prompt('Due Date:');
+      const priority = prompt('Priority:');
+      const item = this.createToDoItem(title,description,dueDate,priority)
+      const itemsFolder= document.getElementById('to-dos')
+      itemsFolder.innerHTML = ""
+      this.items.forEach((item, index) => {
+        const onDelete = () => this.deleteToDoItem(index)
+        item.createHTML(onDelete)
+      })
+      const strData = localStorage.getItem('data');
+      const data = JSON.parse(strData);
+      const current = data.find((list) => list.title === this.title)
+      current.items = this.items
+       localStorage.setItem('data', JSON.stringify(data))
   }
 
   markItemAdDone(index) {
