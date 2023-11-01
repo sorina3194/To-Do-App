@@ -1,3 +1,4 @@
+import { removeList, updateList } from "./storage.js";
 import { ToDoItem } from "./to-do-item.js";
 
 export class ToDoList {
@@ -20,10 +21,10 @@ export class ToDoList {
     const listsContainer = document.getElementById("lists");
     listsContainer.appendChild(toDoList);
 
-    toDoList.addEventListener('click', () => this.displayItems())
+    toDoList.addEventListener('click', () => this.displayItems(toDoList, listsContainer))
   }
 
-  displayItems() {
+  displayItems(toDoList, listsContainer) {
     const itemsFolder= document.getElementById('to-dos')
     itemsFolder.innerHTML = ""
 
@@ -46,11 +47,16 @@ export class ToDoList {
       listsContainer.removeChild(toDoList);
       itemsFolder.innerHTML = "";
       this.deleteToDoList();
+      removeList(this.title)
     });
 
     this.items.forEach((item, index) => {
-      const onDelete = () => this.deleteToDoItem(index)
-      item.createHTML(onDelete)
+      const onDelete = () => {
+        this.deleteToDoItem(index);
+        updateList(this.title, this.items);
+      }
+      const onUpdate = () => updateList(this.title, this.items)
+      item.createHTML(onDelete, onUpdate)
     })
   }
 
@@ -66,11 +72,7 @@ export class ToDoList {
         const onDelete = () => this.deleteToDoItem(index)
         item.createHTML(onDelete)
       })
-      const strData = localStorage.getItem('data');
-      const data = JSON.parse(strData);
-      const current = data.find((list) => list.title === this.title)
-      current.items = this.items
-       localStorage.setItem('data', JSON.stringify(data))
+      updateList(this.title, this.items)
   }
 
   markItemAdDone(index) {

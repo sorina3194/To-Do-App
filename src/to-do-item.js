@@ -7,7 +7,7 @@ export class ToDoItem {
     this.isDone = false;
   }
 
-  createHTML(onDelete) {
+  createHTML(onDelete, onUpdate) {
     const toDoItem = document.createElement("div");
     toDoItem.setAttribute('class', 'card')
     toDoItem.setAttribute('id', 'toDoItem');
@@ -57,6 +57,7 @@ export class ToDoItem {
         this.dueDate = dueDate.innerHTML.replace('DUE DATE: ', "")
         this.priority = priority.innerHTML.replace('PRIORITY: ')
         saveButton.style.display="none"
+        onUpdate()
       })
 
     })
